@@ -1,3 +1,4 @@
+''' Several classes for simplified drawing '''
 from __future__ import division
 import pygame as pg
 
@@ -22,44 +23,47 @@ class Point(object):
 
     def __call__(self):
         return (self.x, self.y)
+        
+    def __str__(self):
+        return '({0},{1})'.format(self.x, self.y)
 
 class ScreenTrans(object):
     """ Screen transformation """
-    def __init__(self, w, h):
+    def __init__(self, piv_x, piv_y):
         super(ScreenTrans, self).__init__()
-        self.width = w
-        self.height = h
+        self.piv_x = piv_x
+        self.piv_y = piv_y
 
     def trans(self, p):
         ''' ScreenPoint to point '''
-        return Point(p.x - self.width / 2, self.height / 2 + p.y)
+        return Point(p.x - self.piv_x, self.piv_y + p.y)
 
     def itrans(self, p):
         ''' Point to ScreenPoint '''
-        return Point(p.x + self.width / 2, self.height / 2 - p.y)
+        return Point(p.x + self.piv_x, self.piv_y - p.y)
 
 class Draw(object):
-    def __init__(self, screen, w, h):
+    def __init__(self, screen, piv_x, piv_y):
         super(Draw, self).__init__()
-        self.width = w
-        self.height = h
         self.screen = screen
-        self.T = ScreenTrans(w, h)
+        self.T = ScreenTrans(piv_x, piv_y)
 
     def draw_line(self, color, p1, p2):
         _p1 = self.T.itrans(p1)
         _p2 = self.T.itrans(p2)
+        # print 'line:', _p1, _p2
         pg.draw.line(self.screen, color, _p1(), _p2())
 
     def draw_circle(self, color, center, radius, width=1):
         _c = self.T.itrans(center)
+        # print 'circle:', _c
         pg.draw.circle(self.screen, color, _c(), radius, width)
 
 def main():
     pg.init()
     width = height = 200
     screen = pg.display.set_mode((width, height))
-    draw = Draw(screen, width, height)
+    draw = Draw(screen, width / 2, height / 2)
 
     p1 = Point(0, 50)
     p2 = Point(50, 0)

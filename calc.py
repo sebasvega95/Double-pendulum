@@ -1,4 +1,4 @@
-'''  '''
+''' Calculate the double pendulum angles and speeds '''
 from __future__ import division
 from math import sin, cos
 
