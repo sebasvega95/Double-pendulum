@@ -20,15 +20,16 @@ width = 800
 height = 600
 
 def main():
-    theta1 = 90 # float(input('Theta1 (degrees): '))
-    theta2 = 180 # float(input('Theta2 (degrees): '))
-    speed1 = 5 # float(input('Vel theta1 (rad/s): '))
-    speed2 = 3 # float(input('Vel theta2 (rad/s): '))
+    ''' Run the program '''
+    theta1 = float(input('Theta1 (degrees): '))
+    theta2 = float(input('Theta2 (degrees): '))
+    speed1 = float(input('Vel theta1 (rad/s): '))
+    speed2 = float(input('Vel theta2 (rad/s): '))
     
     theta1 *= math.pi / 180
     theta2 *= math.pi / 180
-    m = 1 # float(input('Mass (kg): '))
-    l = 1 # float(input('Lenght (m): '))
+    m = float(input('Mass (kg): '))
+    l = float(input('Lenght (m): '))
     
     pendulums = DoublePendulum(1 / fps, theta1, theta2, speed1, speed2, l, m)
     scale = height / 4
