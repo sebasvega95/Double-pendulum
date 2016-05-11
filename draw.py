@@ -73,8 +73,8 @@ def main():
 
     p1 = Point(0, 50)
     p2 = Point(50, 0)
-    draw.draw_line((255,255,255), p1, p2)
-    draw.draw_circle((255,255,255), p1 + p2, 5)
+    draw.draw_line((255, 255, 255), p1, p2)
+    draw.draw_circle((255, 255, 255), p1 + p2, 5)
 
     end = False
     while not end:

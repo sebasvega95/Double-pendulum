@@ -50,7 +50,7 @@ def main():
         theta1, theta2 = pendulums.solve()
         p1 = Point(math.sin(theta1) * scale, -math.cos(theta1) * scale)
         p2 = p1 + Point(math.sin(theta2) * scale, -math.cos(theta2) * scale)
-        # print piv, p1, p2
+        
         path.append(p2)
         canvas.draw_line(black, piv, p1)
         canvas.draw_line(black, p1, p2)
